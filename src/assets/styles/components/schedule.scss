@@ -1,0 +1,101 @@
+@import "~bulma/sass/utilities/variables";
+
+.c-exiles-schedule {
+	width: 400px;
+	background: #decf83;
+
+	header {
+		text-align: center;
+		line-height: 1.1;
+		padding: 3px 0 6px 0;
+
+		h1 {
+			font-size: $size-4;
+			text-transform: uppercase;
+			margin: 0;
+		}
+
+		p {
+			font-size: $size-7;
+		}
+	}
+
+	section {
+		border-top: 1px solid #a2872c;
+		position: relative;
+		margin-top: 7px;
+		padding-top: 7px;
+
+		aside {
+			position: absolute;
+			top: -9px;
+			right: 20px;
+			width: 70px;
+			text-align: center;
+			display: inline-block;
+			line-height: 1;
+			font-size: 0.70rem;
+			padding: 0 2px 2px 2px;
+			border: 1px solid #a2872c;
+			color: #a2872c;
+			background: #fdffcc;
+		}
+
+		.nothing {
+			font-size: $size-7;
+			text-align: center;
+			font-style: italic;
+		}
+
+		li {
+			margin: 5px 0;
+
+			img {
+				padding: 0 4px;
+				width: 75px;
+			}
+
+			p {
+				font-size: 0.7rem;
+				line-height: 1.2;
+			}
+
+			.game {
+				padding: 0 4px;
+			}
+
+			.time {
+				padding: 0 4px 0 21px;
+				width: 66px;
+				text-align: center;
+				line-height: 2;
+			}
+		}
+
+		.fa {
+			font-size: $size-4;
+			padding: 0 4px;
+
+			&.available {
+				color: #1d9668;
+			}
+
+			&.full {
+				color: #d29b0c;
+			}
+		}
+
+		&.legend {
+			padding: 7px 4px;
+
+			.fa {
+				font-size: $size-6;
+				padding-left: 0;
+			}
+
+			p {
+				font-size: $size-7;
+			}
+		}
+	}
+}

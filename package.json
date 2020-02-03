@@ -1,0 +1,32 @@
+{
+  "name": "dnd",
+  "version": "1.0.0",
+  "description": "D&D Related Tools",
+  "scripts": {
+    "dev": "cross-env NODE_ENV=development webpack --progress",
+    "watch": "cross-env NODE_ENV=development webpack --watch --progress",
+    "hot": "cross-env NODE_ENV=development webpack-dev-server --inline --hot",
+    "production": "cross-env NODE_ENV=production webpack --progress"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/withoutboundary/dnd.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/withoutboundary/dnd/issues"
+  },
+  "homepage": "https://github.com/withoutboundary/dnd#readme",
+  "devDependencies": {
+    "laravel-mix": "^0.10.0"
+  },
+  "dependencies": {
+    "bulma": "^0.4.0",
+    "dom-to-image": "^2.5.2",
+    "font-awesome": "^4.7.0",
+    "moment": "^2.18.1",
+    "vue": "^2.2.6"
+  }
+}
