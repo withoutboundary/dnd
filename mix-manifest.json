@@ -1,4 +1,6 @@
 {
   "/public/js/exiles.js": "/public/js/exiles.js",
-  "/public/js/common.js": "/public/js/common.js"
+  "/public/js/common.js": "/public/js/common.js",
+  "/public/css/common.css": "/public/css/common.css",
+  "/public/css/exiles.css": "/public/css/exiles.css"
 }

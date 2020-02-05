@@ -1,30 +1,64 @@
-@import "~bulma/sass/utilities/variables";
+@import url('https://fonts.googleapis.com/css?family=Jomolhari&display=swap');
+
+$exiles-purple: rgb(153, 47, 155);
 
 .c-exiles-schedule {
 	width: 400px;
-	background: #decf83;
+	background: $exiles-purple;
+	color: $white-ter;
+	border: 1px solid $grey-lighter;
+
+	.pattern {
+		background: center / cover no-repeat url("/exiles/images/background-pattern.png");
+	}
+
+	strong {
+		color: $white-ter;
+	}
 
 	header {
 		text-align: center;
 		line-height: 1.1;
-		padding: 3px 0 6px 0;
+		border: 13px solid $black;
+		position: relative;
+		padding: 22px 0 28px 0;
+		z-index: 0;
+
+		.skull {
+			position: absolute;
+			top: 0;
+			left: 0;
+			width: 100%;
+			height: 100%;
+			background: center / 30% no-repeat url("/exiles/images/skull.png");
+			background-position-y: -35px;
+			opacity: 0.2;
+			z-index: -1;
+		}
 
 		h1 {
-			font-size: $size-4;
+			font-family: 'Jomolhari', serif;
+			font-size: $size-5;
 			text-transform: uppercase;
-			margin: 0;
+			margin: 0 0 5px 0;
+			letter-spacing: 1px;
 		}
 
 		p {
-			font-size: $size-7;
+			font-size: $size-6;
 		}
 	}
 
 	section {
-		border-top: 1px solid #a2872c;
+		border-top: 1px solid $grey-lighter;
 		position: relative;
-		margin-top: 7px;
+		margin-bottom: 7px;
 		padding-top: 7px;
+
+		&:last-child {
+			padding-bottom: 7px;
+			margin-bottom: 0;
+		}
 
 		aside {
 			position: absolute;
@@ -35,10 +69,9 @@
 			display: inline-block;
 			line-height: 1;
 			font-size: 0.70rem;
-			padding: 0 2px 2px 2px;
-			border: 1px solid #a2872c;
-			color: #a2872c;
-			background: #fdffcc;
+			padding: 2px 2px 3px 2px;
+			border: 1px solid $grey-lighter;
+			background: $black;
 		}
 
 		.nothing {
@@ -48,27 +81,68 @@
 		}
 
 		li {
-			margin: 5px 0;
-
-			img {
-				padding: 0 4px;
-				width: 75px;
-			}
+			margin: 5px 0 9px 0;
+			overflow: hidden;
 
 			p {
-				font-size: 0.7rem;
+				font-size: $size-6;
 				line-height: 1.2;
+
+				&.opening-time {
+					font-size: $size-7;
+					margin-bottom: 7px;
+					font-style: italic;
+				}
 			}
 
 			.game {
-				padding: 0 4px;
+				strong {
+					font-weight: 600;
+				}
 			}
 
-			.time {
-				padding: 0 4px 0 21px;
-				width: 66px;
+			div.details {
+				position: relative;
+			}
+
+			div.image {
+				float: left;
+				width: 75px;
+				height: 30px;
+				padding: 0 4px;
+				box-sizing: content-box;
 				text-align: center;
-				line-height: 2;
+
+				img {
+					max-width: 70px;
+					max-height: 30px;
+					width: auto;
+					height: auto;
+					text-align: center;
+					display: block;
+					margin: 0 auto;
+				}
+			}
+
+			div.description {
+				float: left;
+				width: 228px;
+			}
+
+			div.time {
+				float: left;
+				width: 70px;
+
+				p {
+					text-align: center;
+					line-height: 2;
+				}
+			}
+
+			div.availability {
+				position: absolute;
+				top: 0;
+				right: 2px;
 			}
 		}
 

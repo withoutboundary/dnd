@@ -22,6 +22,7 @@ mix
 		}
 	})
 	.copyDirectory('src/app', 'public/')
+	.copyDirectory('src/assets/images/exiles', 'public/exiles/images')
 	.copy('node_modules/font-awesome/fonts', 'public/fonts')
 	.js('src/assets/js/common.js', 'public/js/')
 	.js('src/assets/js/exiles.js', 'public/js/')

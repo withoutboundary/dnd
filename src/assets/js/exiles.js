@@ -19,22 +19,73 @@ const ExilesApp = new Vue({
 	data: function() {
 		return {
 			imageSrc: '',
-			date: 'Mon APR 3rd to Fri APR 7th',
+			date: 'April 3rd &ndash; April 6th',
 			weekly: {
 				sections: [
 					{
-						label: 'Wednesday',
+						label: 'Monday',
+						items: [],
+					},
+					{
+						label: 'Tuesday',
 						items: [
 							{
-								img: 'http://placehold.it/75x30',
-								title: 'Title\nSecond line',
-								time: '7pm',
-								status: 'available',
+								img: 'images/logo-d&d.png',
+								game: 'Tales of an Orc-hestra',
+								gm: 'John Smith',
+								system: 'D&D 5e',
+								time: '4pm',
+								available: false,
+							},
+							{
+								img: 'images/logo-d&d.png',
+								game: 'Tales of an Orc-hestra',
+								gm: 'John Smith',
+								system: 'D&D 5e',
+								time: '6pm',
+								available: false,
+							},
+							{
+								img: 'images/logo-d&d.png',
+								game: 'Tales of an Orc-hestra',
+								gm: 'John Smith',
+								system: 'D&D 5e',
+								time: '6pm',
+								available: true,
 							},
 						],
 					},
 					{
-						label: 'Tuesday',
+						label: 'Wednesday',
+						items: [
+							{
+								img: 'images/logo-d&d.png',
+								game: 'Tales of an Orc-hestra',
+								gm: 'John Smith',
+								system: 'D&D 5e',
+								time: '4pm',
+								available: true,
+							},
+							{
+								img: 'images/logo-d&d.png',
+								game: 'Tales of an Orc-hestra',
+								gm: 'John Smith',
+								system: 'D&D 5e',
+								time: '6pm',
+								available: false,
+							},
+							{
+								img: 'images/logo-d&d.png',
+								game: 'Tales of an Orc-hestra',
+								gm: 'John Smith',
+								system: 'D&D 5e',
+								time: '6pm',
+								available: false,
+							},
+						],
+					},
+					{
+						label: 'Thursday',
 						items: [],
 					},
 				],

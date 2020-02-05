@@ -1,38 +1,45 @@
 <template>
 	<div class="c-exiles-schedule">
-		<header>
-			<h1>Exiles Events</h1>
-			<p>{{ date }}</p>
-		</header>
-		<section v-for="section in sections">
-			<aside>{{ section.label }}</aside>
+		<div class="pattern">
+			<header>
+				<div class="skull"></div>
+				<h1>Exiles Gaming Club Events</h1>
+				<p v-html="date"></p>
+			</header>
+			<section v-for="section in sections">
+				<aside>{{ section.label }}</aside>
 
-			<ul v-if="section.items.length">
-				<li v-for="item in section.items">
-					<div class="columns is-gapless">
-						<div class="column is-narrow">
-							<img :src="item.img">
+				<ul v-if="section.items.length">
+					<li v-for="(item, i) in section.items">
+						<p v-if="i === 0" class="opening-time has-text-centered">Club will be open from approx {{ item.time }}</p>
+						<div class="details">
+							<div class="image">
+								<img :src="item.img">
+							</div>
+							<div class="description">
+								<p class="game">
+									<strong>{{ item.game }}</strong><br/>
+									{{ item.system }} ({{ item.gm }})
+								</p>
+							</div>
+							<div class="time">
+								<p class="time">{{ item.time }}</p>
+							</div>
+							<div class="availability">
+								<i v-if="item.available" class="fa fa-star available"></i>
+							</div>
 						</div>
-						<div class="column">
-							<p class="game" v-html="multiline(item.title)"></p>
-						</div>
-						<div class="column is-narrow">
-							<p class="time">{{ item.time }}</p>
-						</div>
-						<div class="column is-narrow">
-							<i class="fa fa-star" :class="statusClass(item.status)"></i>
-						</div>
-					</div>
-				</li>
-			</ul>
-			<p v-else class="nothing">Nothing scheduled</p>
-		</section>
-		<section class="legend">
-			<aside>Legend</aside>
+					</li>
+				</ul>
+				<p v-else class="nothing">Nothing scheduled</p>
+			</section>
+			<!-- <section class="legend">
+				<aside>Legend</aside>
 
-			<p><i class="fa fa-star available"></i>You are welcome to contact the Games Master or turn up on the day to discuss joining their game.</p>
-			<p><i class="fa fa-star full"></i>These games might be full but please contact the Games Master listed to register your interest in joining their game.</p>
-		</section>
+				<p><i class="fa fa-star available"></i>You are welcome to contact the Games Master or turn up on the day to discuss joining their game.</p>
+				<p><i class="fa fa-star full"></i>These games might be full but please contact the Games Master listed to register your interest in joining their game.</p>
+			</section> -->
+		</div>
 	</div>
 </template>
 
@@ -49,11 +56,6 @@
 		methods: {
 			multiline: function(str) {
 				return str.split('\n').join('<br />');
-			},
-			statusClass: function(status) {
-				const c = {};
-				c[status] = true;
-				return c;
 			},
 		},
 	};

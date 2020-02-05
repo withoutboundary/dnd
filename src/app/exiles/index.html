@@ -21,7 +21,7 @@
 			<section class="section">
 				<div class="container is-fluid">
 					<div class="columns">
-						<div class="column is-narrow">
+						<div class="column">
 							<c-exiles-schedule ref="weekly" :date="date" :sections="weekly.sections" ></c-exiles-schedule>
 						</div>
 						<!-- <div class="column is-narrow">
@@ -32,8 +32,7 @@
 								<img src="https://scontent.fsyd4-1.fna.fbcdn.net/v/t1.0-9/17424863_10158604244765245_7661824583540185988_n.jpg?oh=e7f1602d4f15a35bd344a8938e2e44c8&oe=595419A8" />
 							</div>
 						</div> -->
-					</div>
-						<div class="column is-narrow">
+						<div class="column">
 							<button rel="generate" type="button" @click="generate">Generate</button>
 							<div ref="result">
 								<img v-if="imageSrc" :src="imageSrc">
