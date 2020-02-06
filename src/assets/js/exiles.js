@@ -1,15 +1,14 @@
-'use strict';
+'use strict'
 
-import Vue from 'vue';
-import { Calendar } from 'lib/Calendar';
-import domtoimage from 'dom-to-image';
-import Schedule from 'components/exiles/Schedule';
+import Vue from 'vue'
+import { Calendar } from 'lib/Calendar'
+import domtoimage from 'dom-to-image'
+import Schedule from 'components/exiles/Schedule'
 
 const calendar = new Calendar(
-	'64v9bnr8pq5cf32jmm076r1gr8%40group.calendar.google.com',
+	'64v9bnr8pq5cf32jmm076r1gr8@group.calendar.google.com',
 	'AIzaSyDDbUg1MbLU9xW4LziSj2lEJBt8cTBdbDY'
-);
-calendar.getEvents();
+)
 
 const ExilesApp = new Vue({
 	el: '#exiles',
@@ -18,10 +17,11 @@ const ExilesApp = new Vue({
 	},
 	data: function() {
 		return {
-			imageSrc: '',
+			imageSrcWeek: null,
+			imageSrcWeekend: null,
 			date: 'April 3rd &ndash; April 6th',
-			weekly: {
-				sections: [
+			week: {
+				/*sections: [
 					{
 						label: 'Monday',
 						items: [],
@@ -88,23 +88,69 @@ const ExilesApp = new Vue({
 						label: 'Thursday',
 						items: [],
 					},
+				],*/
+				sections: [
+					{
+						label: 'Monday',
+						items: [],
+					},
+					{
+						label: 'Tuesday',
+						items: [],
+					},
+					{
+						label: 'Wednesday',
+						items: [],
+					},
+					{
+						label: 'Thursday',
+						items: [],
+					},
 				],
 			},
-		};
+			weekend: {
+				sections: [
+					{
+						label: 'Friday',
+						items: [],
+					},
+					{
+						label: 'Saturday',
+						items: [],
+					},
+					{
+						label: 'Sunday',
+						items: [],
+					},
+				],
+			},
+		}
 	},
 	methods: {
-		generate: function() {
-			var self = this;
+		generate() {
+			this.imageSrcWeek = null
+			this.imageSrcWeekend = null
 
-			self.imageSrc = '';
-
-			domtoimage.toPng(this.$refs.weekly.$el)
-				.then(function(dataUrl) {
-					self.imageSrc = dataUrl;
+			domtoimage.toPng(this.$refs.week.$el)
+				.then(dataUrl => {
+					this.imageSrcWeek = dataUrl
 				})
 				.catch(function(error) {
-					console.error('oops, something went wrong!', error);
-				});
+					console.error('oops, something went wrong!', error)
+				})
+
+			domtoimage.toPng(this.$refs.weekend.$el)
+				.then(dataUrl => {
+					this.imageSrcWeekend = dataUrl
+				})
+				.catch(function(error) {
+					console.error('oops, something went wrong!', error)
+				})
+		},
+		getEvents() {
+			calendar.getEvents().then(events => {
+				console.log(events)
+			})
 		},
 	},
-});
+})

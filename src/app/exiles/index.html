@@ -20,22 +20,19 @@
 
 			<section class="section">
 				<div class="container is-fluid">
+					<button rel="getEvents" type="button" @click="getEvents">Get Events</button>
+					<button rel="generate" type="button" @click="generate">Generate</button>
 					<div class="columns">
 						<div class="column">
-							<c-exiles-schedule ref="weekly" :date="date" :sections="weekly.sections" ></c-exiles-schedule>
+							<c-exiles-schedule ref="week" :date="date" :sections="week.sections" ></c-exiles-schedule>
 						</div>
-						<!-- <div class="column is-narrow">
-							<c-exiles-schedule></c-exiles-schedule>
-						</div> -->
-						<!-- <div class="column is-narrow">
-							<div class="c-exiles-schedule">
-								<img src="https://scontent.fsyd4-1.fna.fbcdn.net/v/t1.0-9/17424863_10158604244765245_7661824583540185988_n.jpg?oh=e7f1602d4f15a35bd344a8938e2e44c8&oe=595419A8" />
-							</div>
-						</div> -->
 						<div class="column">
-							<button rel="generate" type="button" @click="generate">Generate</button>
+							<c-exiles-schedule ref="weekend" :date="date" :sections="weekend.sections" ></c-exiles-schedule>
+						</div>
+						<div class="column">
 							<div ref="result">
-								<img v-if="imageSrc" :src="imageSrc">
+								<img v-if="imageSrcWeek" :src="imageSrcWeek">
+								<img v-if="imageSrcWeekend" :src="imageSrcWeekend">
 							</div>
 						</div>
 					</div>

@@ -54,9 +54,6 @@
 			date: String,
 		},
 		methods: {
-			multiline: function(str) {
-				return str.split('\n').join('<br />');
-			},
 		},
 	};
 
