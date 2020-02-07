@@ -64,9 +64,11 @@ class Calendar {
 }
 
 function formatEventItem(item) {
+	const start = moment(item.start.dateTime)
 	return lodash.merge({
 		game: item.summary,
-		start: moment(item.start.dateTime),
+		start: start,
+		time: start.minutes() === 0 ? start.format('ha') : start.format('h:mma'),
 		finish: moment(item.end.dateTime),
 	}, parseDescription(item.description))
 }
