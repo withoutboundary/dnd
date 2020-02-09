@@ -23,9 +23,9 @@
 					<div class="level">
 						<div class="level-left">
 							<p class="level-item">Get Events for: </p>
-							<button rel="getEvents" type="button" @click="getEvents" class="button level-item is-primary">This Week</button>
-							<button rel="getEvents" type="button" @click="getEvents" class="button level-item">Last Week</button>
-							<button rel="getEvents" type="button" @click="getEvents" class="button level-item">Next Week</button>
+							<button rel="getEvents" type="button" @click="previousWeek" class="button level-item">Last Week</button>
+							<button rel="getEvents" type="button" @click="thisWeek" class="button level-item is-primary">This Week</button>
+							<button rel="getEvents" type="button" @click="nextWeek" class="button level-item">Next Week</button>
 						</div>
 						<div class="level-right">
 							<button rel="generate" type="button" @click="generate" class="button level-item is-primary">Generate</button>
@@ -34,18 +34,20 @@
 
 					<div class="columns">
 						<div class="column">
-							<p>Week Schedule (Mon-Thu)</p>
-							<c-exiles-schedule ref="week" :date="dateWeek" :sections="week.sections"></c-exiles-schedule>
+							<p v-if="events.length > 0">Week Schedule (Mon-Thu)</p>
+							<c-exiles-schedule ref="week" v-if="events.length > 0" :date="dateWeek" :sections="week.sections"></c-exiles-schedule>
 						</div>
 						<div class="column">
-							<p>Weekend Schedule (Fri-Sun)</p>
-							<c-exiles-schedule ref="weekend" :date="dateWeekend" :sections="weekend.sections"></c-exiles-schedule>
+							<p v-if="events.length > 0">Weekend Schedule (Fri-Sun)</p>
+							<c-exiles-schedule ref="weekend" v-if="events.length > 0" :date="dateWeekend" :sections="weekend.sections"></c-exiles-schedule>
 						</div>
-						<div class="column is-one-quarter">
+					</div>
+					<div class="columns">
+						<div class="column">
 							<p v-if="imageSrcWeek">Week Schedule (Mon-Thu) (Right click -> Save As)</p>
 							<img v-if="imageSrcWeek" :src="imageSrcWeek" class="generated-schedule">
 						</div>
-						<div class="column is-one-quarter">
+						<div class="column">
 							<p v-if="imageSrcWeekend">Weekend Schedule (Fri-Sun) (Right click -> Save As)</p>
 							<img v-if="imageSrcWeekend" :src="imageSrcWeekend" class="generated-schedule">
 						</div>

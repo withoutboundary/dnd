@@ -1,6 +1,9 @@
 <template>
 	<div class="c-exiles-schedule">
 		<div class="pattern"></div>
+		<div class="tentacle tentacle-1"></div>
+		<div class="tentacle tentacle-2"></div>
+		<div class="tentacle tentacle-3"></div>
 		<header>
 			<div class="skull"></div>
 			<h1>Exiles Gaming Club Events</h1>
@@ -14,12 +17,12 @@
 					<p v-if="i === 0" class="opening-time has-text-centered">Club will be open from approx {{ item.time }}</p>
 					<div class="details">
 						<div class="image">
-							<img :src="item.img">
+							<img v-if="item.img" :src="item.img">
 						</div>
 						<div class="description">
 							<p class="game">
 								<strong>{{ item.game }}</strong><br/>
-								{{ item.system }} ({{ item.gm }})
+								{{ item.system }} ({{ item.gm }}){{ facilities(item.facilities) }}
 							</p>
 						</div>
 						<div class="time">
@@ -53,6 +56,13 @@
 			date: String,
 		},
 		methods: {
+			facilities(facilities) {
+				if (!facilities || facilities.toLowerCase() === 'n/a') {
+					return ''
+				}
+
+				return ' (' + facilities + ')'
+			}
 		},
 	};
 

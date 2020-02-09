@@ -7,17 +7,16 @@ class Calendar {
 	constructor(calendarId, apiKey) {
 		this.calendarId = calendarId
 		this.apiKey = apiKey
-		this.week = moment().startOf('isoWeek')
 	}
 
-	generateUrl() {
+	generateUrl(start, finish) {
 		const parts = [
 			'https://content.googleapis.com/calendar/v3/calendars/',
 			encodeURIComponent(this.calendarId),
 			'/events?timeMin=',
-			this.week.toISOString(),
+			start.toISOString(),
 			'&timeMax=',
-			this.week.clone().add(1, 'week').toISOString(),
+			finish.toISOString(),
 			'&orderBy=startTime&singleEvents=true&key=',
 			this.apiKey,
 		]
@@ -25,19 +24,7 @@ class Calendar {
 		return parts.join('')
 	}
 
-	thisWeek() {
-		this.week = moment().startOf('isoWeek')
-	}
-
-	previousWeek() {
-		this.week.subtract(1, 'week')
-	}
-
-	nextWeek() {
-		this.week.add(1, 'week')
-	}
-
-	getEvents() {
+	getEvents(start, finish) {
 		return new Promise((resolve, reject) => {
 			const config = {
 				method: 'GET',
@@ -46,7 +33,7 @@ class Calendar {
 				credentials: 'omit'
 			}
 
-			fetch(this.generateUrl(), config)
+			fetch(this.generateUrl(start, finish), config)
 				.then(function(response) {
 					return response.json()
 				})
@@ -70,7 +57,7 @@ function formatEventItem(item) {
 		start: start,
 		time: start.minutes() === 0 ? start.format('ha') : start.format('h:mma'),
 		finish: moment(item.end.dateTime),
-	}, parseDescription(item.description))
+	}, parseDescription(item.description || ''))
 }
 
 /*
@@ -87,10 +74,10 @@ function parseDescription(desc) {
 		system: '',
 		available: false,
 		facilities: '',
-		img: 'images/',
+		img: false,
 	}
 
-	desc.split("\n").forEach(line => {
+	lodash.forEach(desc.split("\n"), line => {
 		const parts = line.split(':')
 
 		switch (parts[0].toLowerCase().trim()) {
@@ -100,15 +87,21 @@ function parseDescription(desc) {
 			case 'system':
 				parsed.system = parts[1].trim()
 				break
-			case 'available':
+			case 'availability':
 				parsed.available = parts[1].toLowerCase().trim() === 'yes' ? true : false
 				break
 			case 'facilities':
 				parsed.facilities = parts[1].trim()
 				break
 			case 'logo':
-				parsed.img += parts[1].trim()
+				parsed.img = parts[1].trim()
 				break
+			case '===':
+				// exit early
+				return false
+			default:
+				// do nothing
+				break;
 		}
 	})
 

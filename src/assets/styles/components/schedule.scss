@@ -1,7 +1,7 @@
 $exiles-purple: rgb(153, 47, 155);
 
 .c-exiles-schedule {
-	width: 400px;
+	width: 800px;
 	background: $exiles-purple;
 	color: $white-ter;
 	border: 1px solid $grey-lighter;
@@ -23,6 +23,28 @@ $exiles-purple: rgb(153, 47, 155);
 		background: center / cover no-repeat url("/exiles/images/background-pattern.png");
 	}
 
+	.tentacle {
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 100%;
+		height: 100%;
+		opacity: 0.4;
+		z-index: -1;
+
+		&.tentacle-1 {
+			background: bottom -20px center / 50% no-repeat url("/exiles/images/tentacle-1.png");
+		}
+
+		&.tentacle-2 {
+			background: 450px 60% / 50% no-repeat url("/exiles/images/tentacle-2.png");
+		}
+
+		&.tentacle-3 {
+			background: -30px 30% / 50% no-repeat url("/exiles/images/tentacle-3.png");
+		}
+	}
+
 	strong {
 		color: $white-ter;
 	}
@@ -31,6 +53,7 @@ $exiles-purple: rgb(153, 47, 155);
 		text-align: center;
 		line-height: 1.1;
 		border: 13px solid $black;
+		border-bottom-width: 20px;
 		position: relative;
 		padding: 22px 0 28px 0;
 		z-index: 0;
@@ -41,15 +64,15 @@ $exiles-purple: rgb(153, 47, 155);
 			left: 0;
 			width: 100%;
 			height: 100%;
-			background: center / 30% no-repeat url("/exiles/images/skull.png");
-			background-position-y: -35px;
+			background: center / 18% no-repeat url("/exiles/images/skull.png");
+			background-position-y: -56px;
 			opacity: 0.2;
 			z-index: -1;
 		}
 
 		h1 {
 			font-family: serif;
-			font-size: $size-5;
+			font-size: $size-3;
 			text-transform: uppercase;
 			margin: 0 0 5px 0;
 			letter-spacing: 2px;
@@ -73,14 +96,14 @@ $exiles-purple: rgb(153, 47, 155);
 
 		aside {
 			position: absolute;
-			top: -9px;
+			top: -17px;
 			right: 20px;
-			width: 70px;
+			width: 120px;
 			text-align: center;
 			display: inline-block;
 			line-height: 1;
-			font-size: 0.70rem;
-			padding: 2px 2px 3px 2px;
+			font-size: $size-5;
+			padding: 4px 4px 7px 4px;
 			border: 1px solid $grey-lighter;
 			background: $black;
 		}
@@ -92,15 +115,15 @@ $exiles-purple: rgb(153, 47, 155);
 		}
 
 		li {
-			margin: 5px 0 12px 0;
+			padding: 5px 0 12px 0;
 			overflow: hidden;
 
 			p {
-				font-size: $size-6;
+				font-size: $size-5;
 				line-height: 1.2;
 
 				&.opening-time {
-					font-size: $size-7;
+					font-size: $size-6;
 					margin-bottom: 7px;
 					font-style: italic;
 				}
@@ -118,15 +141,15 @@ $exiles-purple: rgb(153, 47, 155);
 
 			div.image {
 				float: left;
-				width: 75px;
-				height: 30px;
-				padding: 0 4px;
+				width: 100px;
+				height: 40px;
+				padding: 0 8px;
 				box-sizing: content-box;
 				text-align: center;
 
 				img {
-					max-width: 70px;
-					max-height: 30px;
+					max-width: 100%;
+					max-height: 100%;
 					width: auto;
 					height: auto;
 					text-align: center;
@@ -137,12 +160,12 @@ $exiles-purple: rgb(153, 47, 155);
 
 			div.description {
 				float: left;
-				width: 226px;
+				width: 543px;
 			}
 
 			div.time {
 				float: left;
-				width: 70px;
+				width: 120px;
 
 				p {
 					text-align: center;
@@ -152,7 +175,7 @@ $exiles-purple: rgb(153, 47, 155);
 
 			div.availability {
 				position: absolute;
-				top: 5px;
+				top: 10px;
 				right: 0;
 			}
 		}

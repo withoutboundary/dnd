@@ -1,12 +1,15 @@
 'use strict'
 
+import domtoimage from 'dom-to-image'
+import lodash from 'lodash'
+import moment from 'moment'
+import Schedule from 'components/exiles/Schedule'
 import Vue from 'vue'
 import { Calendar } from 'lib/Calendar'
-import domtoimage from 'dom-to-image'
-import Schedule from 'components/exiles/Schedule'
 
 const calendar = new Calendar(
-	'64v9bnr8pq5cf32jmm076r1gr8@group.calendar.google.com',
+	//'64v9bnr8pq5cf32jmm076r1gr8@group.calendar.google.com',
+	'exiles.schedule@gmail.com',
 	'AIzaSyDDbUg1MbLU9xW4LziSj2lEJBt8cTBdbDY'
 )
 
@@ -15,13 +18,14 @@ const ExilesApp = new Vue({
 	components: {
 		'c-exiles-schedule': Schedule,
 	},
-	data: function() {
+	data() {
 		return {
+			startOfWeek: null,
 			imageSrcWeek: null,
 			imageSrcWeekend: null,
-			dateWeek: 'April 3rd &ndash; April 6th',
-			dateWeekend: 'April 7th &ndash; April 9th',
-			week: {
+			events: [],
+			week: null,
+			defaultWeek: {
 				sections: [
 					{
 						label: 'Monday',
@@ -56,24 +60,40 @@ const ExilesApp = new Vue({
 						items: [],
 					},
 				],
-			},
+			}
 		}
+	},
+	mounted() {
+		this.week = lodash.cloneDeep(this.defaultWeek)
+	},
+	computed: {
+		dateWeek() {
+			if (!this.startOfWeek) {
+				return null
+			}
+
+			const monday = this.startOfWeek.clone()
+			const thursday = monday.clone().add(3, 'day')
+
+			return monday.format('MMMM Do') + ' &ndash; ' + thursday.format('MMMM Do')
+		},
+		dateWeekend() {
+			if (!this.startOfWeek) {
+				return null
+			}
+
+			const friday = this.startOfWeek.clone().add(4, 'day')
+			const sunday = friday.clone().add(2, 'day')
+
+			return friday.format('MMMM Do') + ' &ndash; ' + sunday.format('MMMM Do')
+		},
 	},
 	methods: {
 		generate() {
 			this.imageSrcWeek = null
 			this.imageSrcWeekend = null
 
-			const scaling = {
-				width: this.$refs.week.$el.clientWidth * 4,
-				height: this.$refs.week.$el.clientHeight * 4,
-				style: {
-					transform: 'scale(4)',
-					transformOrigin: 'top left'
-				}
-			}
-
-			domtoimage.toPng(this.$refs.week.$el, scaling)
+			domtoimage.toPng(this.$refs.week.$el)
 				.then(dataUrl => {
 					this.imageSrcWeek = dataUrl
 				})
@@ -81,7 +101,7 @@ const ExilesApp = new Vue({
 					console.error('oops, something went wrong!', error)
 				})
 
-			domtoimage.toPng(this.$refs.weekend.$el, scaling)
+			domtoimage.toPng(this.$refs.weekend.$el)
 				.then(dataUrl => {
 					this.imageSrcWeekend = dataUrl
 				})
@@ -90,9 +110,17 @@ const ExilesApp = new Vue({
 				})
 		},
 		getEvents() {
-			calendar.getEvents().then(this.parseEvents)
+			this.events = []
+			this.week = lodash.cloneDeep(this.defaultWeek)
+
+			calendar.getEvents(
+				this.startOfWeek,
+				this.startOfWeek.clone().add(1, 'week')
+			).then(this.parseEvents)
 		},
 		parseEvents(events) {
+			this.events = events
+
 			const mapDay = {
 				monday: 0,
 				tuesday: 1,
@@ -121,20 +149,32 @@ const ExilesApp = new Vue({
 						break;
 				}
 
-				console.log(this[part])
-
 				this[part].sections[mapDay[day]].items.push({
 					available: event.available,
 					facilities: event.facilities,
 					finish: event.finish,
 					game: event.game,
 					gm: event.gm,
-					img: event.img,
+					img: event.img ? 'images/logos/' + event.img : false,
 					start: event.start,
 					system: event.system,
 					time: event.time,
 				})
 			})
-		}
+		},
+		thisWeek() {
+			this.startOfWeek = moment().startOf('isoWeek')
+			this.getEvents();
+		},
+		previousWeek() {
+			this.startOfWeek = moment().startOf('isoWeek')
+			this.startOfWeek.subtract(1, 'week')
+			this.getEvents();
+		},
+		nextWeek() {
+			this.startOfWeek = moment().startOf('isoWeek')
+			this.startOfWeek.add(1, 'week')
+			this.getEvents();
+		},
 	},
 })
