@@ -2,15 +2,11 @@ $exiles-purple: rgb(153, 47, 155);
 
 .c-exiles-schedule {
 	width: 800px;
-	background: $exiles-purple;
+	background: $black;
 	color: $white-ter;
 	border: 1px solid $grey-lighter;
 	position: relative;
 	z-index: 0;
-
-	&.scale {
-		scale: 2;
-	}
 
 	.pattern {
 		position: absolute;
@@ -57,6 +53,7 @@ $exiles-purple: rgb(153, 47, 155);
 		position: relative;
 		padding: 22px 0 28px 0;
 		z-index: 0;
+		background: $exiles-purple;
 
 		.skull {
 			position: absolute;
@@ -65,21 +62,24 @@ $exiles-purple: rgb(153, 47, 155);
 			width: 100%;
 			height: 100%;
 			background: center / 18% no-repeat url("/exiles/images/skull.png");
-			background-position-y: -56px;
+			background-position-y: -45px;
 			opacity: 0.2;
 			z-index: -1;
 		}
 
 		h1 {
 			font-family: serif;
-			font-size: $size-3;
+			font-size: $size-2;
 			text-transform: uppercase;
 			margin: 0 0 5px 0;
 			letter-spacing: 2px;
+			text-shadow: 0 0 3px $black;
 		}
 
 		p {
-			font-size: $size-6;
+			font-size: $size-4;
+			letter-spacing: 1px;
+			text-shadow: 0 0 2px $black;
 		}
 	}
 
@@ -97,7 +97,7 @@ $exiles-purple: rgb(153, 47, 155);
 		aside {
 			position: absolute;
 			top: -17px;
-			right: 20px;
+			right: 45px;
 			width: 120px;
 			text-align: center;
 			display: inline-block;
@@ -121,10 +121,11 @@ $exiles-purple: rgb(153, 47, 155);
 			p {
 				font-size: $size-5;
 				line-height: 1.2;
+				letter-spacing: 1px;
 
 				&.opening-time {
-					font-size: $size-6;
-					margin-bottom: 7px;
+					font-size: $size-5;
+					padding-bottom: 11px;
 					font-style: italic;
 				}
 			}
@@ -141,8 +142,8 @@ $exiles-purple: rgb(153, 47, 155);
 
 			div.image {
 				float: left;
-				width: 100px;
-				height: 40px;
+				width: 150px;
+				height: 50px;
 				padding: 0 8px;
 				box-sizing: content-box;
 				text-align: center;
@@ -160,7 +161,7 @@ $exiles-purple: rgb(153, 47, 155);
 
 			div.description {
 				float: left;
-				width: 543px;
+				width: 468px;
 			}
 
 			div.time {
@@ -175,13 +176,13 @@ $exiles-purple: rgb(153, 47, 155);
 
 			div.availability {
 				position: absolute;
-				top: 10px;
-				right: 0;
+				top: 8px;
+				right: 5px;
 			}
 		}
 
 		.fa {
-			font-size: $size-5;
+			font-size: $size-3;
 			padding: 0 4px;
 
 			&.available {
@@ -204,6 +205,12 @@ $exiles-purple: rgb(153, 47, 155);
 			p {
 				font-size: $size-7;
 			}
+		}
+	}
+
+	&.theme-high-contrast {
+		.pattern, .tentacle {
+			display: none;
 		}
 	}
 }

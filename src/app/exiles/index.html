@@ -27,6 +27,25 @@
 							<button rel="getEvents" type="button" @click="thisWeek" class="button level-item is-primary">This Week</button>
 							<button rel="getEvents" type="button" @click="nextWeek" class="button level-item">Next Week</button>
 						</div>
+						<div class="level-item">
+							<div class="field is-horizontal">
+								<div class="field-label is-normal">
+									<label class="label">Theme</label>
+								</div>
+								<div class="field-body">
+									<div class="field is-narrow">
+										<div class="control">
+											<div class="select is-fullwidth">
+												<select v-model="theme">
+													<option value="">None</option>
+													<option value="high-contrast">High Contrast</option>
+												</select>
+											</div>
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
 						<div class="level-right">
 							<button rel="generate" type="button" @click="generate" class="button level-item is-primary">Generate</button>
 						</div>
@@ -35,11 +54,11 @@
 					<div class="columns">
 						<div class="column">
 							<p v-if="events.length > 0">Week Schedule (Mon-Thu)</p>
-							<c-exiles-schedule ref="week" v-if="events.length > 0" :date="dateWeek" :sections="week.sections"></c-exiles-schedule>
+							<c-exiles-schedule ref="week" v-if="events.length > 0" :date="dateWeek" :sections="week.sections" :theme="theme"></c-exiles-schedule>
 						</div>
 						<div class="column">
 							<p v-if="events.length > 0">Weekend Schedule (Fri-Sun)</p>
-							<c-exiles-schedule ref="weekend" v-if="events.length > 0" :date="dateWeekend" :sections="weekend.sections"></c-exiles-schedule>
+							<c-exiles-schedule ref="weekend" v-if="events.length > 0" :date="dateWeekend" :sections="weekend.sections" :theme="theme"></c-exiles-schedule>
 						</div>
 					</div>
 					<div class="columns">

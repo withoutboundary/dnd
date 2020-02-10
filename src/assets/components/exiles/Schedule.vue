@@ -1,10 +1,11 @@
 <template>
-	<div class="c-exiles-schedule">
+	<div class="c-exiles-schedule" :class="themeClass">
 		<div class="pattern"></div>
 		<div class="tentacle tentacle-1"></div>
 		<div class="tentacle tentacle-2"></div>
 		<div class="tentacle tentacle-3"></div>
 		<header>
+			<div class="pattern"></div>
 			<div class="skull"></div>
 			<h1>Exiles Gaming Club Events</h1>
 			<p v-html="date"></p>
@@ -54,6 +55,12 @@
 		props: {
 			sections: Array,
 			date: String,
+			theme: String,
+		},
+		computed: {
+			themeClass() {
+				return this.theme ? 'theme-' + this.theme : false
+			},
 		},
 		methods: {
 			facilities(facilities) {

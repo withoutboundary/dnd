@@ -23,6 +23,7 @@ const ExilesApp = new Vue({
 			startOfWeek: null,
 			imageSrcWeek: null,
 			imageSrcWeekend: null,
+			theme: '',
 			events: [],
 			week: null,
 			defaultWeek: {
