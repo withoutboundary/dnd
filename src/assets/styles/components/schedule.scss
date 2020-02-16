@@ -86,7 +86,7 @@ $exiles-purple: rgb(153, 47, 155);
 	section {
 		border-top: 1px solid $grey-lighter;
 		position: relative;
-		margin-bottom: 7px;
+		margin-bottom: 20px;
 		padding-top: 7px;
 
 		&:last-child {
@@ -171,6 +171,12 @@ $exiles-purple: rgb(153, 47, 155);
 				p {
 					text-align: center;
 					line-height: 2;
+				}
+
+				&.has-facilities {
+					p {
+						line-height: 1.2;
+					}
 				}
 			}
 

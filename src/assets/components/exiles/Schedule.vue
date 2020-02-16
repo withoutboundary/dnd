@@ -23,11 +23,11 @@
 						<div class="description">
 							<p class="game">
 								<strong>{{ item.game }}</strong><br/>
-								{{ item.system }} ({{ item.gm }}){{ facilities(item.facilities) }}
+								{{ item.system }} ({{ item.gm }})
 							</p>
 						</div>
-						<div class="time">
-							<p class="time">{{ item.time }}</p>
+						<div class="time" :class="{ 'has-facilities': facilities(item.facilities) }">
+							<p class="time">{{ item.time }}<br/>{{ facilities(item.facilities) }}</p>
 						</div>
 						<div class="availability">
 							<i v-if="item.available" class="fa fa-star available"></i>
@@ -68,7 +68,7 @@
 					return ''
 				}
 
-				return ' (' + facilities + ')'
+				return facilities
 			}
 		},
 	};
