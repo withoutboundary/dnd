@@ -26,6 +26,7 @@ const ExilesApp = new Vue({
 			theme: '',
 			events: [],
 			week: null,
+			weekend: null,
 			defaultWeek: {
 				sections: [
 					{
@@ -46,7 +47,7 @@ const ExilesApp = new Vue({
 					},
 				],
 			},
-			weekend: {
+			defaultWeekend: {
 				sections: [
 					{
 						label: 'Friday',
@@ -66,6 +67,7 @@ const ExilesApp = new Vue({
 	},
 	mounted() {
 		this.week = lodash.cloneDeep(this.defaultWeek)
+		this.weekend = lodash.cloneDeep(this.defaultWeekend)
 	},
 	computed: {
 		dateWeek() {
@@ -113,6 +115,7 @@ const ExilesApp = new Vue({
 		getEvents() {
 			this.events = []
 			this.week = lodash.cloneDeep(this.defaultWeek)
+			this.weekend = lodash.cloneDeep(this.defaultWeekend)
 
 			calendar.getEvents(
 				this.startOfWeek,
