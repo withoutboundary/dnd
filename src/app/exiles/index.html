@@ -19,7 +19,7 @@
 			</nav>
 
 			<section class="section">
-				<div class="container is-fluid">
+				<div class="is-fluid">
 					<div class="level">
 						<div class="level-left">
 							<p class="level-item">Get Events for: </p>
@@ -47,7 +47,7 @@
 							</div>
 						</div>
 						<div class="level-right">
-							<button rel="generate" type="button" @click="generate" class="button level-item is-primary">Generate</button>
+							<button type="button" @click="generate" class="button level-item is-primary">Generate</button>
 						</div>
 					</div>
 
@@ -59,6 +59,80 @@
 						<div class="column">
 							<p v-if="events.length > 0">Weekend Schedule (Fri-Sun)</p>
 							<c-exiles-schedule ref="weekend" v-if="events.length > 0" :date="dateWeekend" :sections="weekend.sections" :theme="theme"></c-exiles-schedule>
+						</div>
+						<div ref="post" class="column content">
+							<template v-if="events.length > 0">
+								<button type="button" @click="copyVolunteers" class="button">Volunteers</button>
+								<button type="button" @click="copyClub" class="button">Club</button>
+
+								<hr />
+
+								<div ref="volunteers">
+									<p>Hi volunteer keyholders!</p>
+
+									<p>Openers and Closers are needed for the following days. If you can do so, please reply to this post.</p>
+
+									<p v-for="day in days">
+										<span>{{ day }} ({{ startOfWeek.clone().day(day).format('Do') }})</span><br />
+										<span>OPENER ({{ openingTimes[day.toLowerCase()] }}): TBD</span><br />
+										<span>CLOSER: TBD</span>
+									</p>
+								</div>
+
+								<hr />
+
+								<div ref="club">
+									<p>Hey Exiles!</p>
+
+									<p>Here's the schedule for the coming week (starting {{ startOfWeek.format('MMMM Do') }}). In an effort to make things a little easier for us, we have changed the process for making the schedule which also comes with a new design refresh! Feel free to leave any comments on this post. This now includes a "high contrast" version without the extra background details, which should be easier to read.</p>
+
+									<p>If you are running a game during this week and notice any changes that need to be made, or don't see your game on the schedule, please email <a href="mailto:exiles.schedule@gmail.com">exiles.schedule@gmail.com</a>.</p>
+
+									<p>*****************************************************</p>
+
+									<p>JOINING A GAME - Games with a green star are open to new players with GM approval. To join, please contact the Games Master listed beforehand to get all the game details.</p>
+
+									<p>*******************************************************</p>
+
+									<p>RUNNING A GAME - If you want to run a game at Exiles, please send an email to <a href="mailto:exiles.schedule@gmail.com">exiles.schedule@gmail.com</a> with the following in this format, including the category titles:</p>
+
+									<p>
+										Game Name: Name to appear on the schedule<br />
+										System: System used<br />
+										Date: Date required<br />
+										Time: Please include prep time<br />
+										GM: Name of GM to appear on the schedule (ideally you unless organising for someone)<br />
+										New players: Yes or No<br />
+										Facilities: If you have requirements outside of whatever table/booth is available (e.g. war-gaming table or pit inquiries)<br />
+										Recurring: Yes/No, if Yes, please note the period required and an end date. (e.g. weekly/fortnightly)<br />
+										Logo: Attach a logo if you wish, or a default one will be chosen for your system
+									</p>
+
+									<p>*******************************************************</p>
+
+									<p>THE PIT - To use The Pit (large area of the venue, suitable for LARPs, wargaming tournaments etc.), email <a href="mailto:exiles.schedule@gmail.com">exiles.schedule@gmail.com</a> to book in advance and ensure availability.</p>
+
+									<p>*******************************************************</p>
+
+									<p>OPENING THE VENUE - The club is opened by volunteers who do their best to open when needed. If your game is delayed or cancelled, email <a href="mailto:exiles.schedule@gmail.com">exiles.schedule@gmail.com</a> so that any changes to our opening schedule can be made.</p>
+
+									<p>*******************************************************</p>
+
+									<p>JOINING EXILES - Membership forms can be found underneath the sign-in sheet at the till - fill out a form and place it inside the box next to the register labelled "memberships" to join!</p>
+
+									<p>Memberships are $40 a year. Each visit is $7 per day for members, or $10 per day for non-members. Your first visit is FREE, but be sure to find an admin or volunteer who can give you a tour of the club.</p>
+
+									<p>We are a non-profit, so all money received goes to paying the rent, maintaining, and improving Exiles.</p>
+
+									<p>*******************************************************</p>
+
+									<p>CODE OF CONDUCT - Be kind, courteous, and respectful of the space and of your fellow patrons. Our full code of conduct can be found in the Files tab of our Facebook page.</p>
+
+									<p>*****************************************************</p>
+
+									<p>THANK YOU, AND GOOD GAMING!</p>
+								</div>
+							</template>
 						</div>
 					</div>
 					<div class="columns">

@@ -1,5 +1,6 @@
 'use strict'
 
+import copy from 'copy-to-clipboard'
 import domtoimage from 'dom-to-image'
 import lodash from 'lodash'
 import moment from 'moment'
@@ -27,6 +28,16 @@ const ExilesApp = new Vue({
 			events: [],
 			week: null,
 			weekend: null,
+			openingTimes: {},
+			days: [
+				'Monday',
+				'Tuesday',
+				'Wednesday',
+				'Thursday',
+				'Friday',
+				'Saturday',
+				'Sunday',
+			],
 			defaultWeek: {
 				sections: [
 					{
@@ -164,6 +175,17 @@ const ExilesApp = new Vue({
 					system: event.system,
 					time: event.time,
 				})
+
+				if (this.openingTimes[day]) {
+					const current = moment(this.openingTimes[day])
+					const test = moment(event.time)
+
+					if (test.isBefore(current)) {
+						this.openingTimes[day] = event.time
+					}
+				} else {
+					this.openingTimes[day] = event.time
+				}
 			})
 		},
 		thisWeek() {
@@ -179,6 +201,12 @@ const ExilesApp = new Vue({
 			this.startOfWeek = moment().startOf('isoWeek')
 			this.startOfWeek.add(1, 'week')
 			this.getEvents();
+		},
+		copyVolunteers() {
+			copy(this.$refs.volunteers.innerText)
+		},
+		copyClub() {
+			copy(this.$refs.club.innerText)
 		},
 	},
 })
