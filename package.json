@@ -21,7 +21,7 @@
   "homepage": "https://github.com/withoutboundary/dnd#readme",
   "devDependencies": {
     "laravel-mix": "^0.10.0",
-    "node-sass": "^4.13.1",
+    "node-sass": "^7.0.0",
     "vue-template-compiler": "^2.6.11"
   },
   "dependencies": {
